@@ -43,11 +43,9 @@ history = model.fit(
     batch_size=32
 )
 
-# Evaluación
 loss, accuracy = model.evaluate(val_padded, val_labels)
 print(f'Precisión en validación: {accuracy*100:.2f}%')
 
-# Predicción de nuevos textos
 def predict_text(text):
     sequence = tokenizer.texts_to_sequences([text])
     padded = tf.keras.preprocessing.sequence.pad_sequences(sequence, maxlen=max_length, padding='post', truncating='post')
@@ -55,7 +53,6 @@ def predict_text(text):
     predicted_label = label_encoder.inverse_transform([prediction.argmax()])[0]
     return predicted_label, prediction
 
-# Ejemplo
 texto_ejemplo = "te odio"
 etiqueta, probabilidades = predict_text(texto_ejemplo)
 print(f"Texto: {texto_ejemplo}")
