@@ -6,7 +6,6 @@ classifier = pipeline("text-classification", model="Hate-speech-CNERG/dehatebert
 def clasificar_texto(texto):
     resultado = classifier(texto)
     etiqueta = resultado[0]['label']
-    #score = resultado[0]['score']
     
     if etiqueta == 'HATE':
         return f"discurso de odio"
